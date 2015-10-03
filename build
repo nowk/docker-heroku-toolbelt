@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+name=heroku-toolbelt
+
+# remove .cid, incase there is a lingering one
+if [ -f .cid ] ; then
+	rm .cid
+fi
+
+docker build --rm -t $name .
+docker run --privileged=true --cidfile .cid $name heroku update
+
+cid=`cat .cid` # save cid to var
+rm .cid        # remove .cid
+
+docker commit -m "Update Heroku Client" -a "Yung Hwa Kwon" $cid $name
+
+# vim: set filetype=sh :

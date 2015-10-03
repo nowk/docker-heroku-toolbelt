@@ -10,17 +10,9 @@ RUN apk --update add \
 # can't run this due to sudo
 # wget -O- https://toolbelt.heroku.com/install.sh | sh
 #
-RUN mkdir ~/opt \
-	&& cd ~/opt \
-	&& wget -qO- https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz | tar xz \
-	&& mv heroku-client /usr/local/heroku \
-	&& ln -s /usr/local/heroku/bin/heroku /usr/local/bin/heroku \
-	&& cd .. \
-	&& rmdir opt
+RUN mkdir /opt && cd /opt \
+	&& wget -qO- https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz | tar xz
 
-ENTRYPOINT [ "/bin/sh" ]
+COPY ./docker-entrypoint /
+ENTRYPOINT [ "/docker-entrypoint" ]
 
-LABEL \
-	version=$ALPINE_VERSION \
-	os="linux" \
-	arch="amd64"
