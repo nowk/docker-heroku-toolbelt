@@ -6,11 +6,11 @@ Heroku Toolbelt within a Docker container.
 
 __Build:__
 
-    docker build heroku-toolbelt .
+    ./build
 
 __Run:__
 
-    docker run -it heroku-toolbelt
+    docker run --rm -it heroku-toolbelt
     # $ (you got prompt)
 
 Toolbelt as normal.
