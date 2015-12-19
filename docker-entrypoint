@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-
-# set path here, we don't really have a login shell to load ~/.profile
-export PATH=/opt/heroku-client/bin:$PATH
-
-exec "$@"
-
-# vim: set filetype=sh :
