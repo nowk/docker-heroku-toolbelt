@@ -1,0 +1,7 @@
+#!/bin/sh
+# vim: set filetype=sh :
+set -e
+
+docker run --rm -it \
+	--volume=${HOME}/.netrc:/root/.netrc \
+	heroku-toolbelt "$@"
